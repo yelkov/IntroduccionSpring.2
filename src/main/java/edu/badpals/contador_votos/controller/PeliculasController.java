@@ -1,6 +1,6 @@
 package edu.badpals.contador_votos.controller;
 
-import edu.badpals.contador_votos.model.Pelicula;
+import edu.badpals.contador_votos.model.entities.Pelicula;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ public class PeliculasController {
 
     public PeliculasController(){
         peliculas = new ArrayList<>();
-        peliculas.add(new Pelicula("Indiana Jones en busca del Arca perdida","arca"));
-        peliculas.add(new Pelicula("El cielo sobre Berlín","berlin"));
-        peliculas.add(new Pelicula("El imperio contraataca","imperio"));
-        peliculas.add(new Pelicula("Alien: el octavo pasajero","alien"));
+        peliculas.add(new Pelicula("Indiana Jones en busca del Arca perdida","arca.jpg"));
+        peliculas.add(new Pelicula("El cielo sobre Berlín","berlin.jpg"));
+        peliculas.add(new Pelicula("El imperio contraataca","imperio.jpg"));
+        peliculas.add(new Pelicula("Alien: el octavo pasajero","alien.jpg"));
     }
 
     @GetMapping("/")
