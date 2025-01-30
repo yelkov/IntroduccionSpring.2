@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,8 +19,8 @@ public class Pelicula {
     private String nombre;
     private String imagen;
 
-    @OneToMany(mappedBy = "pelicula")
-    private List<Voto> votos;
+    @OneToMany(mappedBy = "pelicula",fetch = FetchType.EAGER)
+    private List<Voto> votos = new ArrayList<>();
 
     public Pelicula(){}
 
@@ -54,6 +55,10 @@ public class Pelicula {
 
     public void setVotos(List<Voto> votos) {
         this.votos = votos;
+    }
+
+    public void addVoto(Voto voto) {
+        this.votos.add(voto);
     }
 
     public String getImagen() {
