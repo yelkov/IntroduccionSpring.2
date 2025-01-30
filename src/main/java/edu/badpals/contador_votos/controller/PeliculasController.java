@@ -1,6 +1,8 @@
 package edu.badpals.contador_votos.controller;
 
 import edu.badpals.contador_votos.model.entities.Pelicula;
+import edu.badpals.contador_votos.service.PeliculaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +14,12 @@ import java.util.List;
 public class PeliculasController {
 
     private List<Pelicula> peliculas;
+    @Autowired
+    private PeliculaService peliculaService;
 
-    public PeliculasController(){
-        peliculas = new ArrayList<>();
-        peliculas.add(new Pelicula("Indiana Jones en busca del Arca perdida","arca.jpg"));
-        peliculas.add(new Pelicula("El cielo sobre Berlín","berlin.jpg"));
-        peliculas.add(new Pelicula("El imperio contraataca","imperio.jpg"));
-        peliculas.add(new Pelicula("Alien: el octavo pasajero","alien.jpg"));
+    public PeliculasController(PeliculaService peliculaService) {
+        this.peliculaService = peliculaService;
+        peliculas = peliculaService.getAllPeliculas();
     }
 
     @GetMapping("/")
@@ -27,6 +28,7 @@ public class PeliculasController {
         return "index";
     }
 
+    /*
     @RequestMapping("/votar")
     public String votar(String nombrePelicula, Model model){
         for (Pelicula pelicula : peliculas){
@@ -37,5 +39,6 @@ public class PeliculasController {
         }
         return "redirect:/";
     }
+     */
 
 }
