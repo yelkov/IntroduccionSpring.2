@@ -23,10 +23,25 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Usuario anadirVoto(Usuario usuario, Pelicula pelicula) {
+    public Usuario crearUsuarioConVoto(String email, Pelicula pelicula) throws IllegalArgumentException {
+        Usuario usuarioExiste = usuarioRepository.findByEmail(email);
+        if(usuarioExiste != null){
+            anadirVoto(usuarioExiste,pelicula);
+        }
+        Usuario usuario = new Usuario(email);
+        Voto voto = new Voto(LocalDate.now(),LocalTime.now(),usuario,pelicula);
+        usuario.setVoto(voto);
+        usuarioRepository.save(usuario);
+        return usuario;
+    }
+
+    public Usuario anadirVoto(Usuario usuario, Pelicula pelicula) throws IllegalArgumentException {
         Usuario usuarioNuevo = usuarioRepository.findById(usuario.getId()).orElse(null);
         if(usuarioNuevo == null){
             throw new IllegalArgumentException("El usuario no existe");
+        }
+        if(usuarioNuevo.getVoto() != null){
+            throw new IllegalArgumentException("El usuario ya ha votado previamente");
         }
         Voto voto = new Voto(LocalDate.now(),LocalTime.now(),usuario,pelicula);
         usuarioNuevo.setVoto(voto);

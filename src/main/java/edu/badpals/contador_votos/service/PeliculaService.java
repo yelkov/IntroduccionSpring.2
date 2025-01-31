@@ -30,4 +30,8 @@ public class PeliculaService {
         return peliculasRepository.findAll();
     }
 
+    public Pelicula getPeliculaById(int id){
+        return peliculasRepository.findById(id).get();
+    }
+
 }

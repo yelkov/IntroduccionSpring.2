@@ -1,18 +1,36 @@
-.container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 350px);
-    grid-gap: 5px;
-    justify-items: center;
-    margin-top: 20px;
+h1{
+    text-align: center;
 }
 
-.pelicula{
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    grid-template-rows: min-content max-content;
+    grid-gap: 5px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.pelicula {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 450px;
+    justify-content: space-between; /* Ajuste dinámico */
+    max-width: 350px; /* Máximo ancho por película */
 }
+
+.votar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    grid-column: 1 / -1;
+}
+
+
 
 .like{
     max-width: 20px;
